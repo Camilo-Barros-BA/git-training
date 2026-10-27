@@ -1,6 +1,6 @@
 # La historia de Git
 
-![Linus Torvalds](images/linus-torvalds.jpg)
+![Linus Torvalds](../images/linus-torvalds.jpg)
 *Linus Torvalds, creador de Linux y de Git. ([Césavr](https://commons.wikimedia.org/wiki/File:LinusTorvalds.jpg), CC BY-SA 4.0)*
 
 ## ¿Qué es Git?
