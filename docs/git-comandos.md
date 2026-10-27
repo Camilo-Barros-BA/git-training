@@ -23,18 +23,6 @@ git status
 
 Es el comando que más se usa en el día a día, porque antes de hacer `add`, `commit`, `diff` o `stash` conviene saber exactamente qué hay pendiente.
 
-## `git add`
-
-Mueve cambios del working directory al **staging area**: la zona intermedia donde preparas exactamente lo que va a entrar en el próximo commit.
-
-```bash
-git add archivo.py     # agrega un archivo específico
-git add .              # agrega todos los cambios de la carpeta actual
-git add -p             # agrega de forma interactiva, parte por parte
-```
-
-Separar "modificar" de "confirmar" permite armar commits pequeños y enfocados, en vez de mezclar varios cambios sin relación en un solo commit.
-
 ## `git branch`
 
 Lista, crea o elimina ramas.
@@ -54,6 +42,18 @@ Cambia de rama o crea una rama nueva y se mueve a ella.
 git switch main            # te mueve a la rama main
 git switch -c feature/x     # crea la rama feature/x y te mueve a ella
 ```
+
+## `git add`
+
+Mueve cambios del working directory al **staging area**: la zona intermedia donde preparas exactamente lo que va a entrar en el próximo commit.
+
+```bash
+git add archivo.py     # agrega un archivo específico
+git add .              # agrega todos los cambios de la carpeta actual
+git add -p             # agrega de forma interactiva, parte por parte
+```
+
+Separar "modificar" de "confirmar" permite armar commits pequeños y enfocados, en vez de mezclar varios cambios sin relación en un solo commit.
 
 ## `git commit`
 
