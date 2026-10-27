@@ -2,7 +2,10 @@
 
 
 def sumar(a, b):
-    return a + b
+    """Suma dos numeros e imprime el resultado para depuracion."""
+    resultado = a + b
+    print(f"sumar({a}, {b}) = {resultado}")
+    return resultado
 
 
 def restar(a, b):
