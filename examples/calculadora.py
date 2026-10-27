@@ -2,6 +2,9 @@
 
 
 def sumar(a, b):
+    """Suma validando que los argumentos sean numéricos."""
+    if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
+        raise TypeError("sumar requiere numeros")
     return a + b
 
 
