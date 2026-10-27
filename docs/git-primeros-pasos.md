@@ -48,6 +48,78 @@ git remote rename origin upstream              # renombra un remoto
 
 Un repositorio puede tener **más de un remoto** (por ejemplo, `origin` apuntando a tu fork y `upstream` apuntando al repositorio original del que hiciste fork), aunque en esta capacitación trabajamos con uno solo.
 
+## Bonus: crear una llave SSH (para conectarte a GitHub)
+
+Esto no es parte de Git en sí, pero lo vas a necesitar apenas quieras clonar o hacer push a un repositorio sin escribir tu usuario y contraseña cada vez. SSH es un protocolo de autenticación: generas un par de llaves (una privada, que se queda en tu máquina, y una pública, que subes a GitHub) y a partir de ahí GitHub confía en tu equipo.
+
+El proceso es el mismo en Mac, Linux y Windows porque todos usan OpenSSH; solo cambia la terminal que usas.
+
+### macOS
+
+```bash
+# Terminal.app o iTerm2
+ssh-keygen -t ed25519 -C "tu-correo@ejemplo.com"
+# Enter para aceptar la ruta por defecto (~/.ssh/id_ed25519) y, opcionalmente, una passphrase
+
+eval "$(ssh-agent -s)"
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+
+pbcopy < ~/.ssh/id_ed25519.pub   # copia la llave pública al portapapeles
+```
+
+### Linux
+
+```bash
+# Terminal del sistema (bash/zsh)
+ssh-keygen -t ed25519 -C "tu-correo@ejemplo.com"
+# Enter para aceptar la ruta por defecto (~/.ssh/id_ed25519) y, opcionalmente, una passphrase
+
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+
+cat ~/.ssh/id_ed25519.pub   # copia manualmente el contenido que se imprime
+# o, si tienes xclip instalado:
+xclip -sel clip < ~/.ssh/id_ed25519.pub
+```
+
+### Windows
+
+```powershell
+# PowerShell o Git Bash (instalado junto con Git for Windows)
+ssh-keygen -t ed25519 -C "tu-correo@ejemplo.com"
+# Enter para aceptar la ruta por defecto (C:\Users\tu-usuario\.ssh\id_ed25519) y, opcionalmente, una passphrase
+
+# En PowerShell, arranca el agente SSH (puede requerir ejecutar como administrador una sola vez):
+Get-Service ssh-agent | Set-Service -StartupType Manual
+Start-Service ssh-agent
+ssh-add $env:USERPROFILE\.ssh\id_ed25519
+
+Get-Content $env:USERPROFILE\.ssh\id_ed25519.pub | clip   # copia la llave pública al portapapeles
+```
+
+### Registrar la llave en GitHub (igual en los tres sistemas)
+
+1. Entra a GitHub → **Settings** → **SSH and GPG keys** → **New SSH key**.
+2. Pega el contenido de tu llave pública (`id_ed25519.pub`), ponle un nombre descriptivo (por ejemplo, el de tu laptop) y guarda.
+3. Verifica la conexión:
+
+```bash
+ssh -T git@github.com
+# Debería responder algo como: "Hi usuario! You've successfully authenticated..."
+```
+
+4. A partir de ahí, clona usando la URL SSH en vez de HTTPS:
+
+```bash
+git clone git@github.com:Camilo-Barros-BA/git-training.git
+```
+
+Si ya clonaste con HTTPS y quieres cambiar a SSH sin volver a clonar, puedes actualizar el remoto existente:
+
+```bash
+git remote set-url origin git@github.com:Camilo-Barros-BA/git-training.git
+```
+
 ## Resumen del flujo completo
 
 ```bash
