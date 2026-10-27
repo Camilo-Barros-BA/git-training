@@ -22,6 +22,19 @@ git switch main            # te mueve a la rama main
 git switch -c feature/x     # crea la rama feature/x y te mueve a ella
 ```
 
+## `git commit`
+
+Confirma en el historial los cambios que ya agregaste al staging area (`git add`), junto con un mensaje que explica qué y por qué cambiaste algo.
+
+```bash
+git add archivo.py            # mueve el cambio al staging area
+git commit -m "feat: agrega validacion de tipos"
+git commit -am "fix: corrige typo"   # add + commit en un paso, solo para archivos ya trackeados
+git commit --amend                   # corrige el último commit (mensaje y/o contenido)
+```
+
+Un buen mensaje de commit es corto, describe la intención del cambio (no el detalle línea por línea) y, en lo posible, sigue una convención del equipo (por ejemplo `feat:`, `fix:`, `docs:`, `chore:`).
+
 ## `git pull`
 
 Trae los cambios del remoto y los integra en la rama actual.
