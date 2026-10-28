@@ -2,6 +2,10 @@
 
 
 def sumar(a, b):
+    """Suma dos numeros e imprime el resultado para depuracion."""
+    resultado = a + b
+    print(f"sumar({a}, {b}) = {resultado}")
+    return resultado
     """Suma validando que los argumentos sean numéricos."""
     if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
         raise TypeError("sumar requiere numeros")
